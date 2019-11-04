@@ -3,6 +3,9 @@ import Router from 'vue-router'
 import Dashboard from './Views/Dashboard.vue'
 import Projects from './Views/Projects.vue'
 import Team from './Views/Team.vue'
+import UserStudy from "./Views/UserStudy.vue"
+import DragResize from "./Views/DragResize.vue"
+import ScreenShot from './Views/ScreenShot.vue'
 
 Vue.use(Router)
 
@@ -24,6 +27,21 @@ export default new Router({
       path: '/team',
       name: 'team',
       component: Team
+    },
+    {
+      path: '/userstudy',
+      name: "userstudy",
+      component: UserStudy
+    },
+    {
+      path: '/dragresize',
+      name: "dragresize",
+      component: DragResize
+    },
+    {
+      path: '/screenshot',
+      name: 'screenshot',
+      component: ScreenShot
     }
 
   ]

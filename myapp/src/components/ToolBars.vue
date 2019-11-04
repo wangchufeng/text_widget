@@ -1,6 +1,6 @@
 <template>
     <div class='ToolBars'>
-        <h1>__ToolBars__</h1>
+        <!-- <h1>Text Widget</h1> -->
         <nav>
             <v-toolbar dense>
                 <v-app-bar-nav-icon class="grey--text" @click="drawer=!drawer">
@@ -91,7 +91,7 @@
             </v-navigation-drawer>
 
         </nav>
-        <a href="https://vuetifyjs.com/en/components/toolbars#toolbars">ToolBars</a>
+        <!-- <a href="https://vuetifyjs.com/en/components/toolbars#toolbars">ToolBars</a> -->
     </div>
 </template>
 
@@ -118,6 +118,20 @@ import popus from "./Popup"
                         text: 'Team',
                         route: '/team'
                     },
+                    {
+                        icon: 'dashboard',
+                        text: 'User Study',
+                        route:'/userstudy'
+                    },
+                    {
+                        icon: 'dashboard',
+                        text: 'Drag Resize',
+                        route: '/dragresize'
+                    },{
+                        icon :'dashboard',
+                        text: 'ScreenShot',
+                        route: 'ScreenShot',
+                    }
                 ],
             }
         }

@@ -38,7 +38,7 @@
 
 <script>
     import format from 'date-fns/format'
-
+    
     export default {
         rules: {
             'no-console': 'off'
