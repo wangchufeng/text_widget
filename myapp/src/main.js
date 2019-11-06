@@ -4,6 +4,7 @@ import vuetify from './plugins/vuetify';
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import router from "./router"
 import VueDragResize from  'vue-drag-resize' 
+import store from './store'
 
 
 
@@ -13,6 +14,7 @@ Vue.config.productionTip = false
 
 new Vue({
   vuetify,
+  store,
   router,
   render: h => h(App)
 }).$mount('#app')
