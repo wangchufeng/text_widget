@@ -12,7 +12,7 @@
                                     </v-file-input>
                                 </form>
                             </div>
-                            <div id="img-wrapper" @click="consolePositon($event)"></div>
+                            <div id="img-wrapper"></div>
                         </v-col>
 
                         <v-col lg="6" class="mt-5">
@@ -20,7 +20,8 @@
                                 <v-col lg="4" v-for="n in 3" :key=n>
                                     <div style=" border: 1px red; position: relative;">
                                         <VueDragResize class="DragResize" :w="200" :h="200">
-                                            <v-card class="card" color="rgba(255, 0, 0, 0.05)">
+                                            <v-card v-on:mousedown="recoveryCardStyle" class="card"
+                                                color="rgba(255, 0, 0, 0.05)">
                                                 <v-card-text>
                                                     <p>
                                                         "Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -42,7 +43,7 @@
                                 <v-col lg="4" v-for="n in 3" :key=n>
                                     <div style=" border: 1px red; position: relative;">
                                         <VueDragResize class="DragResize" :w="200" :h="200">
-                                            <v-card class="card" color="rgba(255, 0, 0, 0.05)">
+                                            <v-card v-on:click="recoveryCardStyle" class="card" color="rgba(255, 0, 0, 0.05)">
                                                 <v-card-text>
                                                     <p>
                                                         "Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -63,7 +64,7 @@
                         </v-col>
                     </v-row>
                     <v-row justify="end" class="mr-5">
-                        <v-btn color="success" @click="consolePositon()">submit</v-btn>
+                        <v-btn color="success" @click="consolePosition()">submit</v-btn>
                     </v-row>
                 </v-col>
             </v-row>
@@ -87,7 +88,6 @@
         return url;
     }
 
-
     import $ from "jquery"
     import VueDragResize from 'vue-drag-resize'
 
@@ -106,11 +106,30 @@
                 let target = e.target;
                 $('#img_' + target.id).attr('src', getFileUrl(e.srcElement));
             },
-            consolePositon() {
+            recoveryCardStyle() {
+                
+                event.currentTarget.style.backgroundColor = "rgba(255, 0, 0, 0.05)"
+            },
+            consolePosition() {
                 var card = document.getElementsByClassName("card")
-                for(var i=0;i<card.length;i++){
-                    console.log(card[i].getBoundingClientRect())
+                var img = document.getElementById("img-wrapper")
+                var imgBounding = img.getBoundingClientRect()
+                var flag = 1
+                for (var i = 0; i < card.length; i++) {
+                    var cardBounding = card[i].getBoundingClientRect()
+                    if (cardBounding.bottom > imgBounding.bottom ||
+                        cardBounding.top < imgBounding.top ||
+                        cardBounding.left < imgBounding.left ||
+                        cardBounding.right > imgBounding.right) {
+                        card[i].style.backgroundColor = "rgba(255, 0, 0, 0.9)"
+                        flag = 0
+                    }
                 }
+                if (flag) {
+                    console.log(img.getBoundingClientRect())
+                }
+
+
             },
         },
         mounted() {
@@ -126,7 +145,7 @@
             // for(var i=0;i<dragResize.length;i++){
             //     dragResize[i].width = cardWidth
             // }
-            
+
         },
     }
 </script>
